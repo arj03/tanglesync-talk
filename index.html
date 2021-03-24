@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>Tanglesync</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/solarized.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+          <h2>Tanglesync</h2>
+          <img src="large-hermies-dancing.gif" style="border: 0; box-shadow: 0 0 0px;"/>
+        </section>
+	<section>
+	  <h2>What is a tangle?</h2>
+	  <ul>
+	    <li>SSB: feeds, single writer data structure</li>
+	    <li>Each message is uniquely defined by its hash</li>
+	    <li>Linking messages together from different feeds</li>
+	  </ul>
+	</section>
+	<section>
+          <h2>Example - thread</h2>
+          <pre>
+            
+   A     (the root message)
+  / \
+ B   C   (two concurrent replies)
+  \ /
+   D     (a message merging those two contexts together)
+   |
+   E     (the current end-point of the thread)
+          </pre>
+          <a href="https://github.com/ssbc/ssb-tangle/">https://github.com/ssbc/ssb-tangle/</a>
+        </section>
+        <section>
+          <h2>Normal sync</h2>
+          <ul>
+            <li>Sync feeds in full</li>
+            <li>Latest seq per feed</li>
+            <li>Locally query data</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Tanglesync</h2>
+          <ul>
+            <li>Set replication</li>
+            <li>Point to point (A, B)</li>
+            <li>All messages with the root X</li>
+            <li>Different set replication algorithms</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Algorithm</h2>
+          <ul>
+	    <li>Both parties agree on sorting</li>
+            <li>Build a tree locally</li>
+	    <li>Multiple rounds</li>
+            <li>Exchange fingerprints based on the tree</li>
+            <li>Send the differences</li>
+          </ul>
+        </section>
+	<section>
+	  <img src="tanglesync.png" style="height: 650px; border: 0; box-shadow: 0 0 0px;" />
+	</section>
+        <section>
+          <h2>Related problems</h2>
+          <ul>
+            <li>Git</li>
+            <li>CRDT</li>
+            <li>Set based data</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Summary</h2>
+          <ul>
+            <li>Different way to sync messages</li>
+            <li>Multi-writer scenario</li>
+            <li>Tailered to SSB concepts</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="node_modules/reveal.js/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+          hash: true
+      });
+    </script>
+  </body>
+</html>
